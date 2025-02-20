@@ -36,14 +36,14 @@ export default function Home() {
       setActiveIndex((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [slides.length]);
 
   // Section tracking
   const { ref: homeRef, inView: homeInView } = useInView({ threshold: 0.5 });
   const { ref: aboutRef, inView: aboutInView } = useInView({ threshold: 0.5 });
   const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.5 });
-  const { ref: portfolioRef, inView: portfolioInView } = useInView({ threshold: 0.5 }); // Add portfolio section tracking
-  const { ref: contactRef, inView: contactInView } = useInView({ threshold: 0.5 });
+  // const { ref: portfolioRef, inView: portfolioInView } = useInView({ threshold: 0.5 });
+  // const { ref: contactRef, inView: contactInView } = useInView({ threshold: 0.5 });
   const { ref: mapRef, inView: mapInView } = useInView({ threshold: 0.5 });
 
   useEffect(() => {
@@ -51,13 +51,13 @@ export default function Home() {
       home: homeInView,
       about: aboutInView,
       services: servicesInView,
-      portfolio: portfolioInView, // Add portfolio section
-      contact: contactInView,
+      // portfolio: portfolioInView,
+      // contact: contactInView,
       map: mapInView,
     };
     const visibleSection = Object.keys(sections).find((key) => sections[key]);
     if (visibleSection) setActiveSection(visibleSection);
-  }, [homeInView, aboutInView, servicesInView, portfolioInView, contactInView, mapInView]);
+  }, [homeInView, aboutInView, servicesInView, mapInView]); //portfolioInView, contactInView,
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -82,7 +82,7 @@ export default function Home() {
                 </p>
                 <a
                   href="#services"
-                  className="inline-block bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-lg transition-colors text-lg md:text-xl"
+                  className="inline-block bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-lg transition-colors text-lg md:text-xl z-50"
                 >
                   {slide.cta}
                 </a>
