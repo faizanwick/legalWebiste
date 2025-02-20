@@ -2,20 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Custom Styles */
+@layer components {
+  .section-title {
+    @apply text-4xl font-bold text-gray-800 mb-8 text-center;
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-5 py-20;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow;
+  }
+
+  .input-field {
+    @apply w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+  
+  .btn-primary {
+    @apply bg-black text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .bg-cover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
