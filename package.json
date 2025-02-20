@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -17,9 +18,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
-    "react-image-lightbox": "^5.1.4",
     "react-intersection-observer": "^9.15.1",
-    "react-scroll": "^1.9.2"
+    "react-scroll": "^1.9.2",
+    "yet-another-react-lightbox": "^3.21.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

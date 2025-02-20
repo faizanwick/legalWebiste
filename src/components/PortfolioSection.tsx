@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css'; // Import the lightbox styles
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 const portfolioImages = [
   '/images/portfolio/doc1.jpg',
@@ -50,22 +50,11 @@ export default function PortfolioSection() {
       {/* Lightbox */}
       {isOpen && (
         <Lightbox
-          mainSrc={portfolioImages[photoIndex]}
-          nextSrc={portfolioImages[(photoIndex + 1) % portfolioImages.length]}
-          prevSrc={
-            portfolioImages[
-              (photoIndex + portfolioImages.length - 1) % portfolioImages.length
-            ]
-          }
-          onCloseRequest={() => setIsOpen(false)}
-          onMovePrevRequest={() =>
-            setPhotoIndex(
-              (photoIndex + portfolioImages.length - 1) % portfolioImages.length
-            )
-          }
-          onMoveNextRequest={() =>
-            setPhotoIndex((photoIndex + 1) % portfolioImages.length)
-          }
+          open={isOpen}
+          close={() => setIsOpen(false)}
+          slides={portfolioImages.map((src) => ({ src }))}
+          index={photoIndex}
+          on={{ view: ({ index }) => setPhotoIndex(index) }}
         />
       )}
     </section>
