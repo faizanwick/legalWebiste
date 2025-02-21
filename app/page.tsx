@@ -1,18 +1,18 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { services } from '@/data/services';
-import { useInView } from 'react-intersection-observer';
-import Header from '@/components/Header';
-import WhatsAppFloat from '@/components/WhatsAppFloat';
-import ContactSection from '@/components/ContactSection';
-import ServiceCard from '@/components/ServiceCard';
-import PortfolioSection from '@/components/PortfolioSection'; // Import the new component
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+"use client";
+import { useState, useEffect } from "react";
+import { services } from "@/data/services";
+import { useInView } from "react-intersection-observer";
+import Header from "@/components/Header";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
+import ContactSection from "@/components/ContactSection";
+import ServiceCard from "@/components/ServiceCard";
+import PortfolioSection from "@/components/PortfolioSection"; // Import the new component
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [expandedService, setExpandedService] = useState<number | null>(null);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState("home");
 
   // Carousel setup
   const slides = [
@@ -41,7 +41,9 @@ export default function Home() {
   // Section tracking
   const { ref: homeRef, inView: homeInView } = useInView({ threshold: 0.5 });
   const { ref: aboutRef, inView: aboutInView } = useInView({ threshold: 0.5 });
-  const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.5 });
+  const { ref: servicesRef, inView: servicesInView } = useInView({
+    threshold: 0.5,
+  });
   // const { ref: portfolioRef, inView: portfolioInView } = useInView({ threshold: 0.5 });
   // const { ref: contactRef, inView: contactInView } = useInView({ threshold: 0.5 });
   const { ref: mapRef, inView: mapInView } = useInView({ threshold: 0.5 });
@@ -68,8 +70,10 @@ export default function Home() {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${slide.bg} bg-cover bg-center ${
-              index === activeIndex ? 'opacity-100' : 'opacity-0'
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              slide.bg
+            } bg-cover bg-center ${
+              index === activeIndex ? "opacity-100" : "opacity-0"
             }`}
           >
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-4">
@@ -94,7 +98,11 @@ export default function Home() {
         {/* Carousel Controls */}
         <div className="absolute inset-0 flex items-center justify-between px-4">
           <button
-            onClick={() => setActiveIndex((prev) => (prev - 1 + slides.length) % slides.length)}
+            onClick={() =>
+              setActiveIndex(
+                (prev) => (prev - 1 + slides.length) % slides.length
+              )
+            }
             className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
           >
             <ChevronLeftIcon className="w-8 h-8 text-white" />
@@ -113,7 +121,7 @@ export default function Home() {
             <button
               key={index}
               className={`w-3 h-3 rounded-full transition-colors ${
-                index === activeIndex ? 'bg-white' : 'bg-white/50'
+                index === activeIndex ? "bg-white" : "bg-white/50"
               }`}
               onClick={() => setActiveIndex(index)}
             />
@@ -122,25 +130,32 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-<section ref={aboutRef} id="about" className="py-16 md:py-24 px-4">
-  <div className="max-w-3xl mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">About LACS</h2>
-    <p className="text-gray-600 text-lg leading-relaxed">
-      Legal Attestation and Consultant Services (LACS) provides fast and reliable 
-      document attestation, apostille, and visa appointment services. We handle 
-      both educational and non-educational documents, ensuring a smooth and hassle-free process.
-    </p>
-    <p className="text-gray-600 text-lg leading-relaxed mt-4">
-      Our services include degree certificate attestation, marriage certificate attestation, 
-      birth certificate attestation, police clearance certificates (PCC), and more. 
-      We make document verification simple and stress-free.
-    </p>
-  </div>
-</section>
-
+      <section ref={aboutRef} id="about" className="py-16 md:py-24 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+            About LACS
+          </h2>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            Legal Attestation and Consultant Services (LACS) provides fast and
+            reliable document attestation, apostille, and visa appointment
+            services. We handle both educational and non-educational documents,
+            ensuring a smooth and hassle-free process.
+          </p>
+          <p className="text-gray-600 text-lg leading-relaxed mt-4">
+            Our services include degree certificate attestation, marriage
+            certificate attestation, birth certificate attestation, police
+            clearance certificates (PCC), and more. We make document
+            verification simple and stress-free.
+          </p>
+        </div>
+      </section>
 
       {/* Services Section */}
-      <section ref={servicesRef} id="services" className="py-16 md:py-24 bg-white">
+      <section
+        ref={servicesRef}
+        id="services"
+        className="py-16 md:py-24 bg-white"
+      >
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-gray-800">
             Our Services
@@ -151,9 +166,11 @@ export default function Home() {
                 key={service.id}
                 service={service}
                 isExpanded={expandedService === service.id}
-                onClick={() => setExpandedService(
-                  expandedService === service.id ? null : service.id
-                )}
+                onClick={() =>
+                  setExpandedService(
+                    expandedService === service.id ? null : service.id
+                  )
+                }
               />
             ))}
           </div>
